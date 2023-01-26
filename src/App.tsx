@@ -97,21 +97,34 @@ export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2>Connect to Phantom Wallet</h2>
       {provider && !walletKey && (
-      <button
-        style={{
-          fontSize: "16px",
-          padding: "15px",
-          fontWeight: "bold",
-          borderRadius: "5px",
-        }}
-        onClick={connectWallet}
-      >
-        Connect Wallet
-      </button>
+          <div className='a-side'>
+            <button className="button-1"
+              style={{
+                fontSize: "16px",
+                padding: "15px",
+                fontWeight: "bold",
+                borderRadius: "5px",
+              }}
+              onClick={connectWallet}
+            >
+              Connect Wallet
+            </button>
+          </div>
         )}
-        {provider && walletKey && <p>Connected account</p> }
+        {provider && walletKey && (
+          <div className='b-side'>
+            <button className='button-2'
+            onClick={disconnectWallet}
+          >
+            Disconnect Wallet
+          </button>
+            <p className='key-info'>
+              Connected Public Key: {provider.publicKey?.toBase58()}
+            </p>
+          </div>
+        )}
+      </header>
 
         {!provider && (
           <p>
@@ -119,7 +132,52 @@ export default function App() {
             <a href="https://phantom.app/">Phantom Browser extension</a>
           </p>
         )}
-        </header>
     </div>
   );
 }
+
+export default App;
+
+} return (
+    <div className="App">
+      <header className="App-header">
+      {provider && !walletKey && (
+          <div className='a-side'>
+            <button className="button-1"
+              style={{
+                fontSize: "16px",
+                padding: "15px",
+                fontWeight: "bold",
+                borderRadius: "5px",
+              }}
+              onClick={connectWallet}
+            >
+              Connect Wallet
+            </button>
+          </div>
+        )}
+        {provider && walletKey && (
+          <div className='b-side'>
+            <button className='button-2'
+            onClick={disconnectWallet}
+          >
+            Disconnect Wallet
+          </button>
+            <p className='key-info'>
+              Connected Public Key: {provider.publicKey?.toBase58()}
+            </p>
+          </div>
+        )}
+      </header>
+
+        {!provider && (
+          <p>
+            No provider found. Install{" "}
+            <a href="https://phantom.app/">Phantom Browser extension</a>
+          </p>
+        )}
+    </div>
+  );
+}
+
+export default App;
